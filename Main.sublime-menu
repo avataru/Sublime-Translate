@@ -1,0 +1,33 @@
+[
+	{
+		"id": "edit",
+		"children":
+		[
+			{ "id": "permute" },
+			{ "caption": "-" },
+			{
+				"caption": "Convert to entities",
+				"id": "convert_to_entities",
+				"children": 
+				[
+					{
+						"caption": "Remove Romanian",
+						"command": "convert_to_entities", "args": { "character_set": "remove_ro"}
+					},
+					{
+						"caption": "Romanian (dec)",
+						"command": "convert_to_entities", "args": { "character_set": "ro_dec"}
+					},
+					{
+						"caption": "Romanian (hex)",
+						"command": "convert_to_entities", "args": { "character_set": "ro_hex"}
+					},
+					{
+						"caption": "Misc. symbols",
+						"command": "convert_to_entities", "args": { "character_set": "symbols"}
+					}
+				]
+			}
+		]
+	}
+]
