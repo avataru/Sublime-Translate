@@ -4,6 +4,7 @@ Sublime Translate package
 This packages replaces a set of characters with another set of characters or
 strings.
 
+
 How to install
 --------------
 
@@ -18,6 +19,7 @@ whole Sublime-Translate folder into Sublime Text 2 Packages folder.
 The easiest way to find the Sublime Text 2 Packages folder is to open Sublime
 and go to Preferences > Browse Packages...
 
+
 How to use
 ----------
 
@@ -29,6 +31,7 @@ it won't be overwritten when you update the package.
 To "translate" a piece of text, select it and then either right-click or go to
 the Edit menu, "Translation maps" entry and select a set.
 
+
 Default maps
 ------------
 
@@ -39,6 +42,20 @@ Default maps
 **Romanian (hex)**: Converts Romanian characters to hexadecimal HTML entities.
 
 **Symbols**: Converts basic special characters to their HTML entities.
+
+
+Change log
+----------
+
+**1.0.1**
+* Added this file;
+* Fixed expected folder name (was Translate instead of Sublime-Translate);
+* Renamed the package command and menu item IDs to something more appropriate.
+
+To do
+-----
+
+Allow strings instead of just single characters as the source in the maps.
 
 ----------------------------------
 
