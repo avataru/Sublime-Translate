@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# TODO: Dynamically populate the edit and context submenu with an entry for each
-# 		character set insead of having to manually add them to the .sublime-menu
-# 		files. In Main.sublime-menu, some menu items are populated dynamically
-# 		through $ variables (eg. $dictionaries, $build_systems or $macros).
-
 import sublime, sublime_plugin
 import os, re
 
@@ -20,19 +15,19 @@ class TranslateMenu:
 		translation_maps = sorted(translation_maps,
 		    key=lambda s: s.lower())
 
-		menu_regex = re.compile(r'"id"\s*:\s*"convert_to_entities"\s*,\s*"children"\s*:\s*(\[[^[]*?])', re.I | re.M | re.S)
+		menu_regex = re.compile(r'"id"\s*:\s*"translation_maps"\s*,\s*"children"\s*:\s*(\[[^[]*?])', re.I | re.M | re.S)
 		menu_file = open(menu_file_path, 'r')
 		menu_data = menu_file.read()
 		menu_file.close()
 
-		menu_indentation = re.search(r'\n(\s*)"id"\s*:\s*"convert_to_entities"', menu_data , re.I | re.M | re.S).group(1)
+		menu_indentation = re.search(r'\n(\s*)"id"\s*:\s*"translation_maps"', menu_data , re.I | re.M | re.S).group(1)
 
-		updated_menu_items = '"id": "convert_to_entities",\n' + menu_indentation  + '"children": \n' + menu_indentation + '[\n'
+		updated_menu_items = '"id": "translation_maps",\n' + menu_indentation  + '"children": \n' + menu_indentation + '[\n'
 
 		for map_id in translation_maps:
 			updated_menu_items += menu_indentation + '\t{\n'
 			updated_menu_items += menu_indentation + '\t\t"caption": "' + settings.get('maps')[map_id]['name'] + '",\n'
-			updated_menu_items += menu_indentation + '\t\t"command": "convert_to_entities", "args": { "character_set": "' + map_id + '"}\n'
+			updated_menu_items += menu_indentation + '\t\t"command": "translate_map", "args": { "character_set": "' + map_id + '"}\n'
 			updated_menu_items += menu_indentation + '\t}'
 			updated_menu_items += ',\n'
 		updated_menu_items = updated_menu_items[:-2] + '\n'
@@ -54,7 +49,7 @@ settings.add_on_change('maps', lambda:TranslateMenu().rebuild())
 
 # The plugin
 
-class ConvertToEntitiesCommand(sublime_plugin.TextCommand):
+class TranslateMapCommand(sublime_plugin.TextCommand):
 	def run(self, edit, character_set):
 		character_map = settings.get('maps')[character_set]['map']
 
