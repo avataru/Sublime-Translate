@@ -14,7 +14,7 @@ settings = sublime.load_settings('Translate.sublime-settings')
 
 class TranslateMenu:
 	def build(self, menu):
-		menu_file_path = os.path.join(sublime.packages_path(), 'Translate', menu + '.sublime-menu')
+		menu_file_path = os.path.join(sublime.packages_path(), 'Sublime-Translate', menu + '.sublime-menu')
 
 		translation_maps = settings.get('maps').keys()
 		translation_maps = sorted(translation_maps,
